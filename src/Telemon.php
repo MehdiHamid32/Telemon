@@ -3,8 +3,16 @@
 namespace Telemon;
 
 use Exception;
+use Telemon\Models\BaseModel;
+use Telemon\Models\CallbackQuery;
+use Telemon\Models\InlineQuery;
+use Telemon\Models\Message;
+use Telemon\Responses\Response;
+use Telemon\Responses\ResponseCallbackQuery;
 use Telemon\Responses\ResponseError;
+use Telemon\Responses\ResponseInlineQuery;
 use Telemon\Responses\ResponseMessage;
+use Telemon\Responses\UpdateResponse;
 
 /**
  * Telegram Bot API wrapper
@@ -49,7 +57,7 @@ use Telemon\Responses\ResponseMessage;
  * @method ResponseMessage getChatMember(array $params)
  * @method ResponseMessage setChatStickerSet(array $params)
  * @method ResponseMessage deleteChatStickerSet(array $params)
- * @method ResponseMessage answerCallbackQuery(array $params)
+ * @method ResponseCallbackQuery answerCallbackQuery(array $params)
  * @method ResponseMessage setMyCommands(array $params)
  * @method ResponseMessage getMyCommands(array $params)
  * @method ResponseMessage editMessageLiveLocation(array $params)
@@ -84,15 +92,30 @@ use Telemon\Responses\ResponseMessage;
 class Telemon
 {
     protected string $token;
+    protected array $update = [];
 
     protected function __construct(string $token)
     {
+        $this->loadUpdates();
         $this->token = $token;
+    }
+
+    protected function loadUpdates(): void
+    {
+        $updates = @file_get_contents('php://input');
+        $updates = json_decode($updates, true);
+        if ($updates)
+            $this->update = $updates;
     }
 
     public static function create(string $token): static
     {
         return new static($token);
+    }
+
+    public function update(): UpdateResponse
+    {
+        return new UpdateResponse($this->update);
     }
 
     private function getEndpoint(string $methodName): string
@@ -117,15 +140,19 @@ class Telemon
             return new ResponseMessage($data);
         }
 
-        if (isset($data['result']['is_bot'])) {
-            return new \Telemon\Responses\ResponseUser($data);
+        elseif (isset($data['result']['callback_query'])) {
+            return new ResponseCallbackQuery($data);
         }
 
-        if (isset($data['result']['type'])) {
-            return new \Telemon\Responses\ResponseChat($data);
+        elseif (isset($data['result']['inline_query'])) {
+            return new ResponseInlineQuery($data);
         }
 
-        return new ResponseError($data);
+        elseif (is_null($data['result'])) {
+            return new ResponseError($data);
+        }
+
+        return new Response($data);
     }
 
 }
