@@ -1,0 +1,17 @@
+{
+    "name": "mehdihamid1223/telemon",
+    "autoload": {
+        "psr-4": {
+            "Telemon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MehdiHamid",
+            "email": "mehdi.hamid0032@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-curl": "*"
+    }
+}
