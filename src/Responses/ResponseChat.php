@@ -4,7 +4,7 @@ namespace Telemon\Responses;
 
 
 use Telemon\Models\BaseModel;
-use Telemon\Models\Chat;
+use Telemon\Models\Message\Chat;
 
 /**
  * @method Chat result()

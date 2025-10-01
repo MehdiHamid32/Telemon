@@ -2,6 +2,9 @@
 
 namespace Telemon\Models;
 
+use Telemon\Models\Message\Chat;
+use Telemon\Models\Message\User;
+
 abstract class BaseModel
 {
     protected array $data;
