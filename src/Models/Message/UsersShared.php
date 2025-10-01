@@ -2,7 +2,10 @@
 
 namespace Telemon\Models\Message;
 
-class UsersShared
-{
+use Telemon\Models\BaseModel;
 
-}
+/**
+ * @method int requestId()
+ * @method SharedUser[] users()
+ */
+class UsersShared extends BaseModel {}

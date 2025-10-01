@@ -6,6 +6,7 @@ use Telemon\Models\Message\Animation;
 use Telemon\Models\Message\Audio;
 use Telemon\Models\Message\CaptionEntities;
 use Telemon\Models\Message\Chat;
+use Telemon\Models\Message\ChatShared;
 use Telemon\Models\Message\Contact;
 use Telemon\Models\Message\Dice;
 use Telemon\Models\Message\DirectMessagesTopic;
@@ -17,6 +18,7 @@ use Telemon\Models\Message\ForumTopicEdited;
 use Telemon\Models\Message\Game;
 use Telemon\Models\Message\GeneralForumTopicHidden;
 use Telemon\Models\Message\GeneralForumTopicUnhidden;
+use Telemon\Models\Message\GiftInfo;
 use Telemon\Models\Message\InlineKeyboardMarkup;
 use Telemon\Models\Message\Invoice;
 use Telemon\Models\Message\LinkPreviewOptions;
@@ -31,6 +33,7 @@ use Telemon\Models\Message\SuccessfulPayment;
 use Telemon\Models\Message\SuggestedPostInfo;
 use Telemon\Models\Message\TextQuote;
 use Telemon\Models\Message\User;
+use Telemon\Models\Message\UsersShared;
 use Telemon\Models\Message\Venue;
 use Telemon\Models\Message\Video;
 use Telemon\Models\Message\VideoChatEnded;
@@ -83,7 +86,7 @@ use Telemon\Models\Message\WebAppData;
  * @method Audio audio()
  * @method Document document()
  * @method PhotoSize[] photo()
- * @method Sticker[] sticker()
+ * @method Sticker sticker()
  * @method Video video()
  * @method VideoNote videoNote()
  * @method Voice voice()
@@ -109,6 +112,9 @@ use Telemon\Models\Message\WebAppData;
  * @method Message pinnedMessage()
  * @method Invoice invoice()
  * @method SuccessfulPayment successfulPayment()
+ * @method UsersShared usersShared()
+ * @method ChatShared chatShared()
+ * @method GiftInfo gift()
  * @method string connectedWebsite()
  * @method PassportData passportData()
  * @method ProximityAlertTriggered proximityAlertTriggered()
