@@ -1,5 +1,7 @@
 {
     "name": "mehdihamid1223/telemon",
+    "description": "A simple PHP wrapper for the Telegram Bot API",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Telemon\\": "src/"
@@ -11,7 +13,9 @@
             "email": "mehdi.hamid0032@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {
-      "ext-curl": "*"
+        "php": "^8.0",
+        "ext-curl": "*"
     }
 }
