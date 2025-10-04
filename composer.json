@@ -13,6 +13,12 @@
             "email": "mehdi.hamid0032@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mehdihamid1223/telemon"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0",
